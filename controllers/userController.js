@@ -6,11 +6,14 @@ export function createUser(req,res){
 
     const passwordHash=bcrypt.hashSync(req.body.password,10)//10 mean salting rounds,hash password 10 times sequentially
 
+ 
+
     const userData={
         firstName:req.body.firstName,
         lastName:req.body.lastName,
         email:req.body.email,
         password:passwordHash,
+        role:req.body.role,
         phone:req.body.phone,
     }
 
@@ -77,4 +80,15 @@ export function loginUser(req,res){
 
 }
 
-    
+export function isAdmin(req)
+{
+    if(req.user==null){
+        return false;
+    }
+    if(req.user.role=="admin"){
+        return true;
+    }
+    else{
+        return false;
+    }
+}

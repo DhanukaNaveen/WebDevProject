@@ -1,14 +1,15 @@
 import express from "express";
 import mongoose from "mongoose";
-import bodyparser from "body-parser";
+import bodyParser from "body-parser";
 
-import studentRouter from "./routers/studentRouter.js";
+
 import userRouter from "./routers/userRouter.js";
+import productRouter from "./routers/productRouter.js";
 import jwt from "jsonwebtoken"
 
 
 const app = express();
-app.use(bodyparser.json()); //app.use for add middleware
+app.use(bodyParser.json()); //app.use for add middleware
 
 app.use(
     (req,res,next)=>{
@@ -32,7 +33,6 @@ app.use(
         
     }
     
-
 )//middleware,for check token,add user object in request,for authentication
 
 const connectionString = "mongodb+srv://admin:123@cluster0.ucewcye.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
@@ -50,8 +50,9 @@ mongoose.connect(connectionString).then(
 
     
 
-app.use("/students",studentRouter);
-app.use("/users",userRouter);
+
+app.use("/api/users",userRouter);//api endpoint
+app.use("/api/products",productRouter);
 
 app.listen(5000,()=>{
     console.log("server started");
