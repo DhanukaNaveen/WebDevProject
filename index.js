@@ -3,15 +3,16 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 dotenv.config();//load variables from .env file
-
-
 import userRouter from "./routers/userRouter.js";
 import productRouter from "./routers/productRouter.js";
 import jwt from "jsonwebtoken"
-
+import cors from "cors"
 
 const app = express();
+
 app.use(bodyParser.json()); //app.use for add middleware
+app.use(cors())
+
 
 app.use(
     (req,res,next)=>{
