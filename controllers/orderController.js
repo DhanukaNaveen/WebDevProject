@@ -82,8 +82,8 @@ export async function createOrder(req, res) {
 }
 
 export async function getOrders(req, res) {
-	const page = parseInt(req.params.page) || 1;
-	const limit = parseInt(req.params.limit) || 10;
+	const page = parseInt(req.params.page) || 1;//convert the requested page number in the url to an integer,if not provided, default to 1
+	const limit = parseInt(req.params.limit) || 10;//convert the requested limit in the url to an integer,if not provided, default to 10
 
 	if (req.user == null) {
 		res.status(401).json({ message: "Please login to view orders" });
@@ -93,7 +93,7 @@ export async function getOrders(req, res) {
 	try {
 		if (req.user.role == "admin") {
 
-			const orderCount = await Order.countDocuments();
+			const orderCount = await Order.countDocuments();//count the total number of orders
 
 			const totalPages = Math.ceil(orderCount / limit);// Calculate total pages by rounding the division of total orders by limit
 
