@@ -1,43 +1,47 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
-    firstName: {
-        type: String,
-        required: true // can't be empty
+    firstName : {
+        type : String,
+        required : true
     },
-    lastName: {
-        type: String,
-        required: true
+    lastName : {
+        type : String,
+        required : true
     },
-    email: {
-        type: String,
-        required: true,
-        unique: true // no two users can have same email
+    email : {
+        type : String,
+        required : true,
+        unique : true
     },
-    password: {
-        type: String
+    password : {
+        type : String,
+        required : true
     },
-    phone: {
-        type: String,
-        default: "not given" // default value
+    phone : {
+        type : String,
+        default : "NOT GIVEN"
     },
     isBlocked: {
-        type: Boolean,
-        default: false
+        type : Boolean,
+        default : false
     },
-    role: {
-        type: String,
-        default: "user"
+    role : {
+        type : String,
+        default : "user"
     },
-    isEmailVerified: {
-        type: Boolean,
-        default: false
+    isEmailVerified : {
+        type : Boolean,
+        default : false
     },
-    image: {
-        type: String,
-        default: "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+    image : {
+        type : String,
+        default : "https://png.pngtree.com/png-clipart/20191120/original/pngtree-outline-user-icon-png-image_5045523.jpg"
     }
-});
+})
 
-const User = mongoose.model("users", userSchema);
+const User = mongoose.model("users",userSchema)
+
 export default User;
+
+
