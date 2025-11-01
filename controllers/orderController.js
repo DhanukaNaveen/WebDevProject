@@ -83,7 +83,7 @@ export async function createOrder(req, res) {
 
 export async function getAllOrders(req, res) {
   try {
-    if (req.user == null || req.user.role !== "admin") {
+    if (!req.user || req.user.role !== "admin") {
       return res.status(403).json({ message: "Unauthorized" });
     }
 

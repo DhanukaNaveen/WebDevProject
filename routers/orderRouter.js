@@ -3,7 +3,7 @@ import { createOrder, getOrders, updateOrder, getAllOrders } from '../controller
 
 const orderRouter = express.Router();
 orderRouter.post("/", createOrder)
-orderRouter.get("/:page/:limit", getOrders)
+orderRouter.get("/", getAllOrders);
 orderRouter.put("/:orderId", updateOrder) // Assuming you want to update an order with the same function
 orderRouter.get("/", getAllOrders);
 
