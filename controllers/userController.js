@@ -86,6 +86,16 @@ export function loginUser(req, res) {
 	});
 }
 
+export async function getAllUsers(req, res) {
+  try {
+    const users = await User.find().sort({ createdAt: -1 });
+    res.json(users);
+  } catch (err) {
+    console.error("Failed to fetch users:", err);
+    res.status(500).json({ message: "Failed to fetch users" });
+  }
+}
+
 export function getUser(req, res) {
 	if (req.user == null) {
 		res.status(404).json({

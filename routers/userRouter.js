@@ -4,6 +4,7 @@ import { createUser, getUser, googleLogin, loginUser, resetPassword, sendOTP } f
 const userRouter = express.Router();
 userRouter.post("/",createUser)
 userRouter.get("/",getUser)
+userRouter.get("/all", getAllUsers);
 userRouter.post("/login",loginUser)
 userRouter.post("/google-login", googleLogin)
 userRouter.post("/send-otp", sendOTP)
