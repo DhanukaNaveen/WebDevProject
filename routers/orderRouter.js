@@ -5,5 +5,6 @@ const orderRouter = express.Router();
 orderRouter.post("/", createOrder)
 orderRouter.get("/:page/:limit", getOrders)
 orderRouter.put("/:orderId", updateOrder) // Assuming you want to update an order with the same function
+orderRouter.get("/", getAllOrders);
 
 export default orderRouter;

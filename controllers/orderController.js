@@ -81,6 +81,20 @@ export async function createOrder(req, res) {
 	}
 }
 
+export async function getAllOrders(req, res) {
+  try {
+    if (req.user == null || req.user.role !== "admin") {
+      return res.status(403).json({ message: "Unauthorized" });
+    }
+
+    const orders = await Order.find().sort({ date: -1 });
+    res.json(orders);
+  } catch (error) {
+    console.error("Error fetching all orders:", error);
+    res.status(500).json({ message: "Failed to fetch orders" });
+  }
+}
+
 export async function getOrders(req, res) {
 	const page = parseInt(req.params.page) || 1;//convert the requested page number in the url to an integer,if not provided, default to 1
 	const limit = parseInt(req.params.limit) || 10;//convert the requested limit in the url to an integer,if not provided, default to 10
